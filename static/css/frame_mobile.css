@@ -18,9 +18,8 @@ div.topbar
 	background-color: rgba(0,0,0,0.1);
 	border-bottom: 1px solid rgba(0,0,0,0.2);
 	margin-bottom: 0px;
-	font-size: 20px;
+	font-size: 30px;
 	padding: 5px 6px 5px 6px;
-	height: 25px;
 }
 
 div.topbar a

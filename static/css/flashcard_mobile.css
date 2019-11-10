@@ -59,8 +59,8 @@ img
 {
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
-    height: 700px;
+    width: 650px;
+    height: 850px;
     cursor: default;
 }
 
@@ -73,7 +73,7 @@ img
 .story_button
 {
     text-align: center;
-    font-size: 20px;
+    font-size: 35px;
     cursor: pointer;
 }
 
@@ -162,7 +162,7 @@ p.kanji input
     border-bottom: 1px solid #d3d0bd;
     padding: 20px;
     margin-top: 240px;
-    font-size: 50px;
+    font-size: 70px;
     margin-bottom: 0;
     background-color: rgba(0,0,0,0.02);
     text-align: center;
@@ -182,10 +182,10 @@ p.kanji input
     border-top: 1px solid #d3d0bd;
     border-bottom: 1px solid #d3d0bd;
     padding: 10px;
-    margin-top: 130px;
+    margin-top: 100px;
     margin-bottom: 0;
     background-color: rgba(0,0,0,0.02);
-    font-size: 250px;
+    font-size: 350px;
     color: #a21725;
     text-align: center;
     font-family: "Hiragino Maru Gothic Pro", Georgia, "Times New Roman", Times, serif;
