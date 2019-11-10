@@ -1,0 +1,130 @@
+{% load static %}
+{% load i18n %}
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head>  
+<title>Statistik - Cirkeldiagram</title>  
+<script type="text/javascript" src="{% static 'js/prototype.js' %}"></script>
+<style type="text/css" media="screen">
+html
+{
+    background-color: #FDF;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+body
+{
+/*    margin-top: 200px;
+    margin-left: 200px;
+    margin-right: 200px;*/
+    
+}
+
+.tooltip {
+    -moz-border-radius-topleft:10px;
+    -webkit-border-top-left-radius:10px;
+    -moz-border-radius-topright:10px;
+    -webkit-border-top-right-radius:10px;
+    -moz-border-radius-bottomleft:10px;
+    -webkit-border-bottom-left-radius:10px;
+    -moz-border-radius-bottomright:10px;
+    -webkit-border-bottom-right-radius:10px;
+    position: absolute; 
+    left: 0; 
+    top: 0;    
+    padding: 5px; 
+    border: 1px solid rgba(0,0,0,0.4); 
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-family: Verdana;
+    font-size: 10px;
+}
+</style>
+<script type="text/javascript" charset="utf-8"><![CDATA[
+    {{ svgpie_js|safe }}
+    {{ svgpie_js2|safe }}
+    
+    var image_left;
+    var image_top;
+    var image_timer;
+    function enlarge(obj)
+    {
+        obj = Element.extend(obj);
+        var img = $('image');
+        image_left = obj.positionedOffset().left + 10;
+        image_top = obj.positionedOffset().top;
+        img.style.left = image_left + "px";
+        img.style.top = image_top + "px";
+        img.show();
+        image_timer = setInterval("enlarge_loop()", 10);
+        obj.hide();
+        enlarge_loop();
+    }
+    
+    function enlarge_loop()
+    {
+        var img = $('image');
+        image_left += 10;
+
+        if (image_left >= 200)
+        {
+            image_left = 200;
+            clearInterval(image_timer);
+        }    
+
+        img.style.left = image_left + "px";
+        img.style.top = image_top + "px";
+        
+        $('image_svg').setAttribute("width", 100 + image_left);
+        $('image_svg').setAttribute("height", 110 + image_left);
+        
+    }
+    
+]]></script>
+</head>  
+<body id="body">
+
+<div style="float: left; padding: 0px 15px 10px 0px;">
+    <div style="width: 100px; height: 110px; border: 1px solid gray; padding: 1px    ">
+        <img src="{% static 'img/small.png' %}" onmousedown="enlarge(this)" />
+    </div>
+</div>
+<p>
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent sagittis venenatis ligula. Cras massa. Pellentesque a dui sit amet justo euismod tempus. Duis id velit. Vestibulum non erat. Nullam commodo velit et sapien. Donec nunc sapien, facilisis mattis, aliquet quis, blandit non, mi. Nam turpis nisi, dignissim at, convallis vel, ullamcorper eget, turpis. Aliquam consectetuer diam sed magna. Sed fermentum urna vitae erat. Nulla blandit neque ut nulla. Curabitur varius dui faucibus nunc.
+</p>
+
+<div style="float: right; padding-right: 15px">
+    <div style="float: right">
+        {{ svgpie|safe }}
+    </div>
+    <div style="float: left; margin-left: 0px; width: 240px">
+        {{ pielegend|safe }}
+    </div>
+</div>
+<p>
+In ut nulla. Praesent in sem. Nullam metus magna, vestibulum sit amet, cursus dignissim, eleifend sed, ipsum. Aliquam pharetra blandit dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras felis leo, dapibus sit amet, luctus ut, congue vel, pede. Suspendisse cursus hendrerit velit. Suspendisse lacinia leo et justo. Ut sit amet tellus vitae augue semper porta. Quisque non felis quis massa fermentum porta. Sed a erat quis felis condimentum tristique. Maecenas ornare tincidunt pede. Fusce imperdiet. Sed pede. Nulla molestie.
+</p>
+<p>
+Proin eget orci id magna malesuada bibendum. Mauris semper turpis in nunc. Sed nec risus. Curabitur ornare. Duis aliquam mauris in lacus. Pellentesque arcu. Aliquam auctor luctus felis. Vivamus bibendum. Sed vehicula metus quis velit cursus scelerisque. Cras vitae nibh. Nam ultrices volutpat mauris. Phasellus in purus. Nam eget elit at urna rutrum rutrum. Nulla auctor sem nec lorem. Vivamus imperdiet. Curabitur lectus nisl, volutpat vitae, pulvinar sit amet, tempus in, turpis. Vestibulum ante nisi, pulvinar vel, faucibus vel, porttitor at, ligula. Aenean tortor. Sed porta sagittis ligula. Nulla nulla eros, tristique a, vulputate id, adipiscing at, purus.
+</p>
+<div style="float: left; padding-right: 15px">
+{{ svgpie2|safe }}
+</div>
+<p>
+Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras pellentesque pede consectetuer erat. Donec risus ipsum, luctus sit amet, vulputate eget, cursus ullamcorper, odio. Maecenas convallis, nibh eu mollis egestas, lorem purus tempus velit, id placerat ante metus a justo. Sed lectus tellus, adipiscing in, accumsan eget, placerat eget, nunc. Quisque ornare ipsum sit amet arcu. Curabitur vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus bibendum pretium nibh. Morbi tristique, elit volutpat vehicula egestas, eros diam tincidunt lectus, ac egestas turpis pede non erat. Nulla et massa a tortor mollis commodo. Duis sollicitudin hendrerit nulla. Phasellus condimentum, turpis id tincidunt mattis, dolor risus molestie dolor, quis venenatis metus purus a diam. Suspendisse aliquet dui nec dolor.
+</p>
+<p>
+Aliquam tellus ipsum, consequat consequat, blandit nec, laoreet eget, risus. Maecenas diam. Nulla vitae dui lobortis ante molestie consequat. Nam interdum molestie massa. Praesent fringilla dui sit amet ligula. Pellentesque molestie varius sem. Suspendisse non urna sed augue molestie dapibus. Nulla facilisi. Quisque lobortis pede. Quisque tincidunt urna in nisi. Nunc euismod dui ac nulla. Donec accumsan tincidunt libero. Vivamus bibendum purus eu felis. In facilisis sapien et urna. Morbi eget lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+</p>
+
+<div id="image" style="margin: 0; padding: 0; position: absolute; left: 0; top: 0; display: none">
+<svg id="image_svg" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="1.2" baseProfile="tiny" width="100" height="110" viewBox="0 0 100 110">
+    <image x="1" y="0" width="100%" height="100%" xlink:href="{% static 'img/big.png' %}">
+        <title>External image</title>
+    </image>
+</svg>
+</div>
+
+<div id="hover" class="tooltip" style="display: none; cursor: default"></div>
+</body>  
+</html>

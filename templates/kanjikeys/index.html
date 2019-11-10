@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+{% load i18n %}
+{% load publishing %}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sv" lang="sv">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{% block title %}{% endblock %}</title>
+
+		{% block head %}
+		{% endblock %}
+	</head>
+	<body>
+		{{ test }}
+		{{ test|linebreaksp }}
+		
+		{% block body %}
+		{% endblock %}
+		
+		{% comment %}<textarea id="debug"></textarea>{% endcomment %}
+	</body>
+</html>

@@ -1,0 +1,68 @@
+{% extends "kanjikeys/kanjicard.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load publishing %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/flashcard.css' %}" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="{% static 'css/flashcard_pdf.css' %}" type="text/css" media="print" charset="utf-8" />
+{% endblock %}
+
+{% block kanji %}
+<div class="kanjicard">
+	<div class="id">
+		 <span>{% ifequal kanji.kanji_type 'kanji' %}#{{ kanji.heisig }}{% else %}*{% endifequal %}</span>
+	</div>
+	{% if not kanji.published %}
+	<div class="kanjicard_not_published">
+		<span>{% trans "Not published" %}</span>
+	</div>
+	{% endif %}
+	<div class="kanjicard_edit">
+		<a href="/admin/kanjikeys/kanji/{{ kanji.id }}/">{% trans 'edit' %}</a>
+	</div>
+	<div class="clear">&nbsp;</div>
+	<div class="left">
+		<p class="kanji">{{ kanji.kanji }}</p>
+		<p class="strokes">[{{ kanji.strokes }}]</p>
+	</div>
+	<div class="keyword">
+		{% if kanji.keyword_sv|longerthan:"20" %}
+			<span class="smaller">{{ kanji.keyword_sv }}</span>
+		{% else %}
+			<span>{{ kanji.keyword_sv }}</span>
+		{% endif %}
+	</div>
+	<div class="meanings" id="kanjicard_meanings_wrapper">
+		{% if kanji.meanings %}
+			<p class="kanjicard_meanings_title">{% trans "Meanings as a primitive:" %}</p>
+			<p class="kanjicard_meanings" id="kanjicard_meanings">{{ kanji.meanings|join:" / " }}</p>
+		{% endif %}
+	</div>
+	<div class="banner">
+	</div>
+	<div class="story" id="kanjicard_story_narrow">
+		<table class="story_table"><tr><td>
+		<div class="story_wrapper">
+		<p class="storytext first">{{ kanji.story_sv|safe|linebreaksp }}</p>
+		</div>
+		</td><td class="story_table_right">
+		<div class="primitives">
+			{% for part in kanji.parts %}
+				<div class="prim_kanji_link" onclick="load_kanjicard({{  part.id }})">
+					<a href="#{{ part.id }}">
+					<p class="prim_kanji">{{ part.kanji }}</p>
+					<p class="prim_meanings">{{ part.meanings|join:"<br />"|safe }}</p>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+		</td></tr></table>
+	</div>
+	<div class="clear">&nbsp;</div>
+</div>
+{% endblock %}
+
+{% block backlink %}
+{% endblock %}

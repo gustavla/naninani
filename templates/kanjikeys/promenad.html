@@ -1,0 +1,64 @@
+{% extends "kanjikeys/index.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}Promenad{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/flashcard.css' %}" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="{% static 'css/frame.css' %}" type="text/css" media="screen" charset="utf-8" />
+    <script type="text/javascript" src="{% static 'js/prototype.js' %}"></script>
+    <style type="text/css" media="screen">
+        a
+        {
+            text-decoration: none;
+            color: black;
+        }
+
+        .kanji
+        {
+            font-size: 30px;
+        }
+
+        html
+        {
+            background-color: #fefbf4;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+
+{% load i18n %}
+<svg style="position: absolute; top: 0; left: 0; display:block; width: 100%; height: 100%; margin: 0; padding: 0;" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="1.2" baseProfile="tiny" viewBox="0 0 {{width}} {{height}}">
+
+    {{ svgdata|safe }}
+
+</svg>
+
+    {% include 'kanjikeys/topbar.html' %}
+{% comment %}
+    <table border="0" cellpadding="20px">
+        <tr>
+            <td>
+                <ul>
+                {% for part in parts %}
+                    <li><a href="/promenad/{{ part.id }}/"><span class="kanji">{{ part.kanji }}</span> {{ part.meaning }}</a></li>
+                {% endfor %}
+                </ul>
+            </td>
+            <td>&gt;</td>
+            <td>
+                <p><span class="kanji">{{ kanji.kanji }}</span> {{ kanji.meaning }}</p>
+            </td>
+            <td>&gt;</td>
+            <td>
+                <ul>
+                {% for part in children %}
+                    <li><a href="/promenad/{{ part.id }}/"><span class="kanji">{{ part.kanji }}</span> {{ part.meaning }}</a></li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+{% endcomment %}
+{% endblock %}

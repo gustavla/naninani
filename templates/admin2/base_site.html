@@ -1,0 +1,39 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Kanji site admin' %}{% endblock %}
+{% block extrastyle %}<link rel="stylesheet" href="{% static 'css/frame.css' %}" type="text/css" media="screen" charset="utf-8" />{% endblock %}
+
+{% block header %}
+<div style="background-color: #a7c1de">
+	{% include 'kanjikeys/topbar.html' %}
+	<div class="submenu">
+		<div class="submenu_left float_left">
+			<h1>{% trans "Kanji administration" %}</h1>
+		</div>
+		<div class="submenu_right float_right">
+			<form style="display:inline; margin-left: 20px;" action="/i18n/setlang/" method="post">
+				<select name="language">
+				{% for lang in LANGUAGES %}
+					<option value="{{ lang.0 }}" {% ifequal lang.0 LANGUAGE_CODE %}selected="selected"{% endifequal %}>{{ lang.1 }}</option>
+				{% endfor %}
+				</select>
+				<input type="submit" value="Go" />
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+{% endblock %}
+
+{% block userlinks %}
+{{ block.super }}
+<form style="display:inline; margin-left: 20px;" action="/i18n/setlang/" method="post">
+	<select name="language">
+	{% for lang in LANGUAGES %}
+		<option value="{{ lang.0 }}" {% ifequal lang.0 LANGUAGE_CODE %}selected="selected"{% endifequal %}>{{ lang.1 }}</option>
+	{% endfor %}
+	</select>
+	<input type="submit" value="Go" />
+</form>
+{% endblock %}

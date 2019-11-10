@@ -1,0 +1,117 @@
+{% load static %}
+{% load i18n %}
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head>  
+	<title>{% trans "Overview" %}</title>  
+	<style type="text/css" media="screen">
+		.kanjihover
+		{
+			position: absolute;
+			height: 200px;
+			width: 200px;
+		}
+	</style>
+    <script type="text/javascript" src="{% static 'js/prototype.js' %}"></script>
+	<script type="text/javascript" charset="utf-8"><![CDATA[
+		{{ jskanjis|safe }} // Sets up jsk and jsm
+	
+		var opacity = 1.0;
+		var fadeout_timer = 0;
+		var fadeout_starttimer = 0;
+		function showkanji(id, evt)
+		{
+			hidekanji();
+			
+			if (jsk[id])
+			{
+				opacity = 1.0
+				var dim = document.viewport.getDimensions();
+				var hover = $('kanjihover');
+				hover.style.width = hover.style.height = Math.min(dim.width, dim.height)*0.4 + "px";
+			
+				hover.style.left = (dim.width/2 - hover.getWidth()/2) + "px";
+				if (id < 1000)
+					hover.style.top = (dim.height - hover.getHeight() - 30) + "px";
+				else
+					hover.style.top = 30 + "px";
+				
+		//		$('hover_id_shadow').textContent = id;
+				$('hover_id').textContent = id;
+				$('hover_kanji_shadow').textContent = jsk[id];
+				$('hover_kanji').textContent = jsk[id];
+				$('hover_keyword_shadow').textContent = jsm[id];
+				$('hover_keyword').textContent = jsm[id];
+
+				clearTimeout(fadeout_starttimer);
+				clearInterval(fadeout_timer);
+
+				evt.target.onmouseout = function() {
+					clearTimeout(fadeout_starttimer);
+					clearInterval(fadeout_timer);
+					fadeout_starttimer = setTimeout("fadeout_timer = setInterval('fadeoutkanji()', 30)", 1000);
+					evt.target.onmouseout = null;
+				}
+				
+				// Let's call this once so that everything is set up, it doesn't matter
+				//  that it gets faded one step.
+				fadeoutkanji();
+				
+				hover.show();
+			}
+		}
+		
+		function hidekanji()
+		{
+			$('kanjihover').hide();
+		}
+		
+		function fadeoutkanji()
+		{
+			opacity -= 0.05;
+			$('hover_svg').setAttribute('fill-opacity', opacity);
+			$('hover_rect').setAttribute('fill-opacity', 0.5*opacity);
+			if (opacity <= 0)
+			{
+				clearInterval(fadeout_timer);
+				hidekanji();
+			}
+		}
+	]]></script>
+</head>  
+<body id="body" style="background-color: black;" onresize="hidekanji()">
+
+<svg style="position: absolute; top: 0; left: 0; display:block; width: 100%; height: 100%; margin: 0; padding: 0;" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" 
+    version="1.2" baseProfile="tiny" viewBox="0 0 {{width}} {{height}}">
+	<rect x="0" y="0" width="{{width}}" height="{{height}}" fill="#333" stroke="none" stroke-width="1" />
+	
+	{% for box in boxes %}
+	<rect onclick="showkanji({{ box.id }}, evt)" x="{{ box.x }}" y="{{ box.y }}" width="{{ box.width }}" height="{{ box.height }}" fill="{{ box.color }}" stroke="black" stroke-width="1" />
+	{% endfor %}
+	
+	{% comment %}
+	{% for text in texts %}
+		<path stroke="gray" fill="none" stroke-width="1" d="M 0 {{ text.line_y }} h {{ width }}" />
+		<text x="{{ text.x }}" y="{{ text.y }}" dx="0" dy="0" fill="white" fill-opacity="0.1" align="left" font-size="14" text-anchor="start">
+			{{ text.text }}
+	    </text>
+	{% endfor %}
+	{% endcomment %}
+</svg>
+
+<div id="kanjihover" class="kanjihover" style="display: none">
+<svg id="hover_svg" onclick="hidekanji()" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" 
+    version="1.2" baseProfile="tiny" viewBox="0 0 800 800">
+	<rect id="hover_rect" x="0" y="0" width="100%" height="100%" fill="black" fill-opacity="0.3" stroke="none" stroke-width="1" rx="100" ry="100" />
+	
+	<!-- Kan göras med filter, får gärna göras om, så länge S3/FF3 har stöd -->
+	<text id="hover_id" x="50%" y="100%" dy="-76" fill="#333" align="center" text-anchor="middle" font-size="40"></text>
+
+	<text id="hover_kanji_shadow" x="50%" y="50%" dy="110" dx="10" fill="black" align="center" text-anchor="middle" font-size="460"></text>
+	<text id="hover_kanji" x="50%" y="50%" dy="100" fill="white" align="center" text-anchor="middle" font-size="460"></text>
+
+	<text id="hover_keyword_shadow" x="50%" y="50%" dy="275" dx="5" fill="black" align="center" text-anchor="middle" font-size="70"></text>
+	<text id="hover_keyword" x="50%" y="50%" dy="270" fill="white" align="center" text-anchor="middle" font-size="70"></text>
+</svg>
+</div>
+</body>  
+</html>

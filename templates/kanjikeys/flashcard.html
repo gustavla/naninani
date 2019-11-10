@@ -1,0 +1,21 @@
+{% load i18n %}
+<!-- "Flashcard" is the small one with only keyword/kanji -->
+
+<div class="buttons">
+	<input type="submit" onmousedown="submit_kanji(1)" value="{% trans "Yes" %}" />
+	<input type="submit" onmousedown="submit_kanji(0)" value="{% trans "No" %}" />
+	<input type="submit" onmousedown="submit_kanji(-1)" value="{% trans "Skip" %}" />
+</div>
+<div class="flashcard" onmousedown="flip_card()">
+	<div id="keyword_side">
+		<p class="keyword" id="keyword"><span id="flashcard_keyword_sv">&nbsp;</span></p>
+	</div>
+	<div id="kanji_side" style="display: none">
+		<p class="id">#<span id="flashcard_id"></span></p>
+		<p class="kanji"><span id="flashcard_kanji"></span></p>
+	</div>
+</div>
+
+<div id="story_button">
+<a id="flashcard_cardlink"><p class="story_button">{% trans "show kanji card" %}</p></a>
+</div>

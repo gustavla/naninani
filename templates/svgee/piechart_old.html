@@ -1,0 +1,58 @@
+<div id="svg_container{{ key }}" style="margin: 0; padding: 0; width: {{ side }}px; height: {{ side }}px">
+<svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" 
+    version="1.2" baseProfile="tiny" width="{{ side }}" height="{{ side }}" viewBox="0 0 {{ side }} {{ side }}">
+	
+	<defs>
+		<radialGradient id="circleback" cx="{{ halfside }}" cy="{{ halfside }}" r="{{ halfside }}" fx="{{ halfside }}" fy="{{ halfside }}" gradientUnits="userSpaceOnUse">
+		<stop offset="0%" style="stop-color:white;stop-opacity:1"/>
+		<stop offset="30%" style="stop-color:black;stop-opacity:1"/>
+		<stop offset="100%" style="stop-color:black;stop-opacity:1"/>
+		</radialGradient>
+		
+		<filter id="MyFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="200" height="200">
+		      <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"/>
+		      <feOffset in="blur" dx="1" dy="1" result="offsetBlur"/>
+		      <feSpecularLighting in="blur" surfaceScale="5" specularConstant=".75" 
+		                          specularExponent="20" lighting-color="#bbbbbb"  
+		                          result="specOut">
+		        <fePointLight x="-5000" y="-10000" z="20000"/>
+		      </feSpecularLighting>
+		      <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"/>
+		      <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" 
+		                   k1="0" k2="1" k3="1" k4="0" result="litPaint"/>
+		      <feMerge>
+		        <feMergeNode in="offsetBlur"/>
+		        <feMergeNode in="litPaint"/>
+		      </feMerge>
+		    </filter>
+	</defs>
+	
+	
+	<g filter="url(#MyFilter)">
+	<circle cx = "{{ halfside }}"
+	        cy = "{{ halfside }}"
+	        r = "{{ rplus }}"
+	        stroke = "black"
+	        stroke-width = "1px"
+	        fill = "white" />
+	</g>
+
+	{% if 1 %}
+	{% for part in parts %}
+	<defs>
+		<radialGradient id="grad{{ key }}{{ part.id }}" cx="{{ halfside }}" cy="{{ halfside }}" r="{{ halfside }}" fx="{{ halfside }}" fy="{{ halfside }}" gradientUnits="userSpaceOnUse">
+		<stop offset="0%" style="stop-color:{{ part.color }};stop-opacity:1"/>
+		<stop offset="100%" style="stop-color:{{ part.color }};stop-opacity:0.5"/>
+		</radialGradient>
+	</defs>
+
+	<path id="path{{ key }}{{ part.id }}" onmouseover="hover{{ key }}(evt, {{ part.id }})" onmouseout="unhover{{ key }}(evt)" d="m {{ halfside }},{{ halfside }} l {{ part.sx }},{{ part.sy }} A{{ r }},{{ r }} 0 {{ part.large_arc_flag }},1 {{ part.x }},{{ part.y }} z"
+		fill="url(#grad{{ key }}{{ part.id }})" stroke="white" stroke-width="1" fill-opacity="1" stroke-opacity="0.4" stroke-linejoin="round" />
+
+
+	<path id="path{{ key }}{{ part.id }}" onmouseover="hover{{ key }}(evt, {{ part.id }})" onmouseout="unhover{{ key }}(evt)" d="M {{ part.cx }},{{ part.cy }} l {{ part.sx }},{{ part.sy }} A{{ r }},{{ r }} 0 {{ part.large_arc_flag }},1 {{ part.x }},{{ part.y }} z"
+		fill="url(#grad{{ key }}{{ part.id }})" stroke="red" stroke-width="1" fill-opacity="1" stroke-opacity="1" stroke-linejoin="round" />
+	{% endfor %}
+	{% endif %}
+</svg>
+</div>

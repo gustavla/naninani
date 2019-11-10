@@ -1,0 +1,25 @@
+{% extends "kanjikeys/kanjicard.html" %}
+{% load i18n %}
+
+{% block top %}
+<div class="lesson">
+	<p class="title">{% trans "Lesson" %} {{ kanji.lesson }}</p>
+{% for k in lesson_kanji %}
+	<a href="#{{ k.id }}" onclick="load_kanjicard({{ k.id }})">
+	{% ifequal k.id kanji.id %}
+		<span class="kanji_selected">{{ k.kanji }}</span>
+	{% else %}
+		{% ifequal k.kanji_type "primitive" %}
+			<span class="primitive">{{ k.kanji }}</span>
+		{% else %}
+			<span>{{ k.kanji }}</span>
+		{% endifequal %}
+	{% endifequal %}
+	</a>
+{% endfor %}
+</div>
+{% endblock %}
+
+
+{% block backlink %}
+{% endblock %}

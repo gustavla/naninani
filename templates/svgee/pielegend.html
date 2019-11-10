@@ -1,0 +1,6 @@
+
+<ul>
+{% for part in parts %}
+	<li style="color: {{ part.color }}"><span id="pielegend_{{ key }}_{{ part.id }}" style="color: black">{{ part.name }}</span></li>
+{% endfor %}
+</ul>

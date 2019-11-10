@@ -1,0 +1,36 @@
+
+div.flagged
+{
+	text-align: right;
+}
+div.published
+{
+/*	float: right;*/
+	text-align: right;
+}
+
+div.kanji input.vTextField
+{
+	font-size: 50px;
+	width: 60px;
+	height: 60px;
+	text-align: center;
+}
+
+div.comment textarea.vLargeTextField
+{
+	font-size: 12px;
+	height: 60px;
+*	border: none;*/
+}
+
+div.kanjidic input.vTextField
+{
+	width: 600px;
+}
+
+#id_keyword_sv,
+#id_keyword_en
+{
+	width: 200px;
+}

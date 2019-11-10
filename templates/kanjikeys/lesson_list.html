@@ -1,0 +1,32 @@
+{% extends "kanjikeys/index.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "Lessons" %}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/flashcard.css' %}" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="{% static 'css/frame.css' %}" type="text/css" media="screen" charset="utf-8" />
+<script type="text/javascript" src="{% static 'js/prototype.js' %}"></script>
+
+<script type="text/javascript" charset="utf-8">
+	var user_id = {{ user_id }};
+</script>
+{% endblock %}
+{% block body %}
+	{% include 'kanjikeys/topbar.html' %}
+	<div style="height: 10px"></div>
+	<div class="lesson_list">
+	<table>
+		<tr>
+			<td>
+			{% for k in lessons %}
+				<p class="lesson"><a href="/lesson/#{{ k.id }}">{% trans "Lesson" %} {{ k.lesson }}</p>
+				{% if k.break %}
+					</td><td>
+				{% endif %}
+			{% endfor %}
+			</td>
+		</tr>
+	</table>
+	</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "kanjikeys/index.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans 'Lesson' %} {{ lesson_id }}
+{% endblock %}
+
+{% block body %}
+<h1 class="pdf-title">{% trans 'Lesson' %} {{ lesson_id }}</h1>
+<div class="divider"></div>
+{% for k in kanjicards %}
+<div style="margin-top: 5px; margin-bottom: 5px; text-align: center; width: 100%">
+	{{ k }}
+	<div class="divider"></div>
+</div>
+{% endfor %}
+{% endblock %}

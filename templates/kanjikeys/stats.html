@@ -1,0 +1,29 @@
+{% load i18n %}
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head>  
+<title>{% trans "Statistics" %}</title>
+</head>  
+<body id="body" style="background-color: black;">
+
+<svg style="position: absolute; top: 0; left: 0; display:block; width: 100%; height: 100%; margin: 0; padding: 0;" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" 
+    version="1.2" baseProfile="tiny" viewBox="0 0 {{width}} {{height}}">
+	<rect x="0" y="0" width="{{width}}" height="{{height}}" fill="black" stroke="none" stroke-width="1" />
+	
+	<path stroke="gray" fill="none" stroke-width="1" d="M 0 {{limit_line_y}} h {{width}}" />
+	
+	<text x="100%" y="{{limit_line_y}}" dx="-10" dy="-10" fill="white" fill-opacity="0.1" align="right" font-size="20" text-anchor="end">
+		{{ num_pub_kanji }}
+    </text>
+	
+	{% for username,graph in graphs.items %}
+    <path vector-effect="non-scaling-stroke" d="{{ graph.d }}" fill="{{ graph.color }}" fill-opacity="0.5" stroke="{{ graph.color }}" stroke-width="1" />
+	{% endfor %}
+</svg>
+<p style="position: absolute; top: 0; left: 0; margin: 0;">
+	{% for username,graph in graphs.items %}
+		<span style="color: {{ graph.color }}">{{ username }} [{{ graph.final_score|floatformat }}]</span>
+	{% endfor %}
+</p>
+
+</body>  
+</html>

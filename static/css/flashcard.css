@@ -1,0 +1,535 @@
+/* @override 
+	http://localhost:8000/static/css/flashcard.css
+*/
+
+body
+{
+	margin: 0;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	background-color: #fefbf4;
+}
+
+img
+{
+	border: none;
+}
+
+/* @group Shared */
+
+#kanjicard_wrapper div.clear
+{
+	clear: both;
+	font-size: 1px;
+}
+
+.buttons
+{
+	text-align: center;
+	margin-bottom: 8px;
+	margin-top: 3px;
+}
+
+#flashcard_wrapper .flashcard,
+#kanjicard_wrapper .kanjicard
+{
+	margin-left: auto;
+	margin-right: auto;
+	-moz-border-radius-topleft:10px;
+    -webkit-border-top-left-radius:10px;
+    -moz-border-radius-topright:10px;
+    -webkit-border-top-right-radius:10px;
+    -moz-border-radius-bottomleft:10px;
+    -webkit-border-bottom-left-radius:10px;
+    -moz-border-radius-bottomright:10px;
+    -webkit-border-bottom-right-radius:10px;
+	background-color: white;
+	border-bottom-width: 1px;
+	border-top-width: 1px;
+	border: 1px solid #999;
+}
+
+#flashcard_wrapper .flashcard
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 190px;
+	height: 250px;
+	cursor: default;
+}
+
+#story_button a
+{
+	text-decoration: none;
+	color: rgba(109,70,0,0.46);
+}
+
+.story_button
+{
+	text-align: center;
+	font-size: 10px;
+	cursor: pointer;
+}
+
+/* @end */
+
+/* @group Add flashcard */
+
+.add_wrapper
+{
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.add_left 
+{
+	float: left;
+}
+
+.add_right
+{
+	float: right;
+}
+
+.add_buttons
+{
+	text-align: center;
+}
+
+.add_buttons input
+{
+	margin-top: 20px;
+}
+
+p.kanji input,
+p.keyword input,
+p.page input,
+p.hint textarea,
+p.id input
+{
+	border: 1px dashed rgba(0,0,0,0.35);
+	outline-color: #ddd;
+	background: none;
+	padding: 0px;
+	font-size: inherit;
+	color: inherit;
+	text-align: inherit;
+	font-family: inherit;
+}
+
+p.page input,
+p.id input
+{
+	width: 30px;
+	font-size: 10px;
+	padding: 3px;
+}
+
+p.hint textarea
+{
+	width: 170px;
+	height: 70px;
+	vertical-align: 1px;
+}
+
+p.keyword input
+{
+	width: 150px;
+}
+
+p.kanji input
+{
+	width: 150px;
+}
+
+
+
+/* @end */
+
+/* @group Flashcard
+ */
+
+#flashcard_wrapper .keyword
+{
+	border-top: 1px solid #d3d0bd;
+	border-bottom: 1px solid #d3d0bd;
+	padding: 10px;
+	margin-top: 100px;
+	margin-bottom: 0;
+	background-color: rgba(0,0,0,0.02);
+	text-align: center;
+}
+
+#flashcard_wrapper .id
+{
+	font-size: 10px;
+	color: #777;
+	height: 20px;
+	margin-left: 15px;
+	margin-top: 8px;
+}
+
+#flashcard_wrapper .kanji
+{
+	border-top: 1px solid #d3d0bd;
+	border-bottom: 1px solid #d3d0bd;
+	padding: 10px;
+	margin-top: 23px;
+	margin-bottom: 0;
+	background-color: rgba(0,0,0,0.02);
+	font-size: 80px;
+	color: #a21725;
+	text-align: center;
+	font-family: "Hiragino Maru Gothic Pro", Georgia, "Times New Roman", Times, serif;
+}
+
+#flashcard_wrapper .page
+{
+	color: #ccc;
+	margin-top: 5px;
+	text-align: right;
+	margin-right: 15px;
+	font-size: 12px;
+}
+
+#flashcard_wrapper .story
+{
+	margin: 10px;
+	font-size: 12px;
+	line-height: 150%;
+	color: #444;
+}
+
+/* @end */
+
+/* @group Kanjicard */
+
+table.kanjicard_table
+{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border-spacing: 0;
+}
+
+table.kanjicard_table td
+{
+	padding: 0;
+}
+
+table.kanjicard_table .arrows
+{
+	padding: 0;
+	width: 15px;
+	margin-top: 45px;
+	cursor: pointer;
+}
+
+table.kanjicard_table td
+{
+	vertical-align: top;
+}
+
+#kanjicard_wrapper .kanjicard
+{
+	width: 500px;
+	min-height: 300px;
+}
+
+#kanjicard_wrapper div.banner
+{
+	clear: both;
+	border-top: 1px solid #d3d0bd;
+	background-color: rgba(0,0,0,0.04);
+	height: 10px;
+}
+
+#kanjicard_wrapper div.keyword
+{
+	float: left;
+	font-size: 30px;
+	margin-left: 40px;
+	margin-top: 20px;
+	margin-bottom: 0;
+	width: 350px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: left;
+}
+
+#kanjicard_wrapper div.keyword .smaller
+{
+	font-size: 24px;
+}
+
+#kanjicard_wrapper div.meanings
+{
+	text-align: right;
+	float: left;
+	width: 350px;
+	margin-top: 14px;
+	margin-left: 40px;
+}
+
+#kanjicard_wrapper div.meanings p
+{
+	padding: 0;
+	margin: 0;
+}
+
+#kanjicard_wrapper div.meanings p.kanjicard_meanings_title
+{
+	text-transform: lowercase;
+	color: #CCC;
+	margin-bottom: 2px;
+	font-size: 10px;
+	font-style: italic;
+}
+
+#kanjicard_wrapper div.meanings p.kanjicard_meanings
+{
+	color: #444;	
+	font-size: 14px;
+}
+
+
+#kanjicard_wrapper div.id
+{
+	float: right;
+	font-size: 16px;
+	color: #999;
+	width: 60px;
+	text-align: right;
+	margin-right: 15px;
+	margin-top: 8px;
+	margin-bottom: 0px;
+}
+
+#kanjicard_wrapper .kanjicard_edit 
+{
+	float: right;
+	font-size: 12px;
+	margin-top: 12px;
+	margin-left: 0px;
+}
+
+#kanjicard_wrapper .kanjicard_not_published
+{
+	float: left;
+	margin-left: 10px;
+	margin-top: 5px;
+	font-size: 12px;
+	font-style: italic;
+	text-transform: uppercase;
+	color: #888;
+}
+
+#kanjicard_wrapper .kanjicard_edit a
+{
+	color: rgba(62,23,37,0.1);
+	font-style: italic;
+	text-decoration: none;
+}
+
+#kanjicard_wrapper .kanjicard_edit a:hover
+{
+	color: rgba(62,23,37,0.55);
+	font-style: italic;
+	text-decoration: none;
+}
+
+#kanjicard_wrapper div.left
+{
+	float: left;
+	padding: 0;
+	margin: 0;
+	margin-top: 0px;
+	margin-bottom:  20px;
+	margin-left: 20px;
+	text-align: center;
+}
+
+#kanjicard_wrapper div.left p.kanji
+{
+	line-height: 100%;
+	font-size: 80px;
+	margin: 0px;
+	color: #a21725;
+	font-family: "Hiragino Maru Gothic Pro", Georgia, "Times New Roman", Times, serif;
+}
+
+#kanjicard_wrapper div.left p.strokes
+{
+	font-size: 12px;
+	color: #aaa;
+	margin: 10px 0 0 0;
+}
+
+#kanjicard_wrapper div.story
+{
+	clear: both;
+	float: left;
+	width: 470px;
+	margin: 10px 10px 10px 10px;
+	font-size: 14px;
+	color: #444;
+	line-height: 0;
+}
+
+#kanjicard_wrapper div.story a
+{
+	color: #a21725;
+}
+
+#kanjicard_wrapper table.story_table
+{
+	width: 100%;
+}
+
+#kanjicard_wrapper table.story_table td
+{
+	vertical-align: top;
+}
+
+
+#kanjicard_wrapper div.story div.broad
+{
+	width: 460px;
+}
+
+#kanjicard_wrapper div.story_wrapper p
+{
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	line-height: 170%;
+	text-indent: 12px;
+}
+
+#kanjicard_wrapper div.story_wrapper p.first
+{
+	text-indent: 0px;
+}
+
+#kanjicard_wrapper a
+{
+	text-decoration: none;
+}
+
+#kanjicard_wrapper div.story div.primitives
+{
+	float: right;
+	border: 1px solid white;	
+	line-height: 170%;
+	padding-left: 10px;
+	border-left: 1px solid rgba(92,23,37,0.25);
+	font-family: inherit;
+}
+
+#kanjicard_wrapper div.story p.prim_kanji
+{
+	margin: 0;
+	padding: 0;
+	color: rgba(162,23,37,0.75);
+	font-size: 20px;
+}
+
+#kanjicard_wrapper div.story p.prim_meanings
+{
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	font-style: italic;
+	color: #aaa;
+	white-space: nowrap;
+}
+
+#kanjicard_wrapper .prim_kanji_link
+{
+	cursor: pointer;
+}
+
+
+/* To highlight divs, remove "_" */
+#kanjicard_wrapper_ div
+{
+	background-color: rgba(255,255,0,0.2);
+}
+
+
+/* @end */
+
+/* @group Lessons */
+
+div.lesson .title
+{
+	padding: 0;
+	margin: 0 0 10px 0;
+	color: rgba(92,23,37,0.65);
+	text-align: center;
+}
+
+div.lesson
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 480px;
+}
+
+div.lesson,
+div.lesson a
+{
+	color: rgba(92,23,37,0.45);
+	text-align: left;
+}
+
+div.lesson .kanji_selected
+{
+	color: rgb(192,0,37);
+}
+
+div.lesson .primitive
+{
+	color: rgba(192,0,37,0.15);
+}
+
+
+/* @end */
+
+/* @group Lesson list */
+
+div.lesson_list
+{
+	color: red;
+	text-align: center;
+}
+div.lesson_list table
+{
+	width: 100%;
+}
+
+div.lesson_list table td
+{
+	vertical-align: top;
+}
+
+div.lesson_list a
+{
+	color: rgba(92,23,37,0.65);
+	text-decoration: none;
+}
+
+div.lesson_list a:hover
+{
+	color: rgb(92,23,37);
+}
+
+.pdf-title
+{
+	text-align: center;
+}
+
+/* @end */
+
+
+
