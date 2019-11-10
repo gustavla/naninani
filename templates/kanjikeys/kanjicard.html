@@ -9,6 +9,14 @@
 <div id="kanjicard_wrapper">
     {% block top %}{% endblock %}
 
+    {% block backlink %}
+    <div id="story_button">
+        <a href="#">
+            <p class="story_button" onclick="unload_kanjicard()">{% trans "back to flashcard" %}</p>
+        </a>
+    </div>
+    {% endblock %}
+
     {% block kanji %}
     <table class="kanjicard_table"><tr><td>
     {% if kanji_id_prev %}
@@ -80,13 +88,5 @@
     <div class="arrows">&nbsp;</div>
     {% endif %}
     </td></tr></table>
-    {% endblock %}
-
-    {% block backlink %}
-    <div id="story_button">
-        <a href="#">
-            <p class="story_button" onclick="unload_kanjicard()">{% trans "back to flashcard" %}</p>
-        </a>
-    </div>
     {% endblock %}
 </div>
