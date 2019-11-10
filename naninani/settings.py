@@ -25,7 +25,9 @@ SECRET_KEY = 'ju6nzbhsx1v37d@+%uc3)m-yulb9g^95hy$5gow5*vz=-0zs2^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'glarsson.pythonanywhere.com',
+]
 
 
 # Application definition
@@ -50,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'kanji.urls'
+ROOT_URLCONF = 'naninani.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'kanji.wsgi.application'
+WSGI_APPLICATION = 'naninani.wsgi.application'
 
 
 # Database
